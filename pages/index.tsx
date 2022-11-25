@@ -10,7 +10,6 @@ const Home: NextPage = () => {
   return (
     <Fragment>
       <Hero />
-      <FeaturedPosts />
     </Fragment>
   );
 };
