@@ -17,12 +17,11 @@ export function getPostsFiles() {
   return fs.readdirSync(postsDirectory);
 }
 
-export function getPostData(fileName: any) {
-  const filePath = path.join(postsDirectory, fileName);
-  const fileContent = fs.readFileSync(filePath, "utf-8"); //  Additional loop execution stops until the data is parsed
+export function getPostData(postIdentifier: any) {
+  const postSlug = postIdentifier.replace(/\.md$/, "");
+  const filePath = path.join(postsDirectory, `${postSlug}.md`);
+  const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-
-  const postSlug = fileName.replace(/\.md$/, ""); // remove the file extension
 
   const postData: any = {
     slug: postSlug,
