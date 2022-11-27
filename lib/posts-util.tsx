@@ -13,7 +13,11 @@ import path from "path";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-function getPostData(fileName: any) {
+export function getPostsFiles() {
+  return fs.readdirSync(postsDirectory);
+}
+
+export function getPostData(fileName: any) {
   const filePath = path.join(postsDirectory, fileName);
   const fileContent = fs.readFileSync(filePath, "utf-8"); //  Additional loop execution stops until the data is parsed
   const { data, content } = matter(fileContent);
@@ -29,9 +33,8 @@ function getPostData(fileName: any) {
   return postData;
 }
 
-function getAllPosts() {
-  const postFiles = fs.readFileSync(postsDirectory);
-
+export function getAllPosts() {
+  const postFiles = getPostsFiles();
   const allPosts = postFiles.map((postFile: any) => {
     return getPostData(postFile);
   });
@@ -42,7 +45,8 @@ function getAllPosts() {
 
   return sortedPosts;
 }
-function getFeaturedPosts() {
+
+export function getFeaturedPosts() {
   const allPosts = getAllPosts();
   const featuredPosts = allPosts.filter((post: any) => post.isFeatured);
   return featuredPosts;
