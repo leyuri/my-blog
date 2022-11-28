@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vs } from "react-syntax-highlighter/dist/cjs/styles/prism";
+// google
 
 function PostContent(props: any) {
   const { post } = props;
