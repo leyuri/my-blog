@@ -20,16 +20,13 @@ function PostContent(props: any) {
     // },
     p(paragraph: any) {
       const { node } = paragraph;
-
       if (node.children[0].tagName === "img") {
         const image = node.children[0];
-        console.log("image.properties", image.properties);
-
         return (
           <div className={classes.image}>
             <Image
               src={`${image.properties.src}`}
-              alt={image.alt}
+              alt={image.properties.alt}
               width={600}
               height={300}
             />
