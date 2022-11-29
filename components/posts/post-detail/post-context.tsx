@@ -7,20 +7,11 @@ import { vs } from "react-syntax-highlighter/dist/cjs/styles/prism";
 // google
 
 function PostContent(props: any) {
+  console.log("props", props);
   const { post } = props;
   const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers = {
-    // image(image: any) {
-    //   return (
-    //     <Image
-    //       src={`/images/posts/${post.slug}/${image.src}`}
-    //       alt={image.alt}
-    //       width={600}
-    //       height={300}
-    //     />
-    //   );
-    // },
     p(paragraph: any) {
       const { node } = paragraph;
       if (node.children[0].tagName === "img") {
@@ -40,26 +31,11 @@ function PostContent(props: any) {
     },
     code(code: any) {
       const { className, children } = code;
-      console.log("className", className);
-      console.log("children", children);
       const language = className.split("-")[1]; // className is something like language-js => We need the "js" part here
-      console.log("language", language);
       return (
         <SyntaxHighlighter style={vs} language={language} children={children} />
       );
     },
-    // code(code: any) {
-    //   const { language, value } = code;
-    //   console.log("language", language);
-    //   console.log("value", value);
-    //   return (
-    //     <SyntaxHighlighter
-    //       style={atomDark}
-    //       language={language}
-    //       children={value}
-    //     />
-    //   );
-    // },
   };
 
   return (
